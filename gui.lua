@@ -262,41 +262,17 @@ Selection_AIM.TextColor3 = Color3.fromRGB(255, 255, 255)
 Selection_AIM.TextSize = 18.000
 Selection_AIM.TextWrapped = true
 
-local FunctionTable = {
-	["ESP_BUTTON"] = function()
-		print("Not Setup")
-	end,
-	["ESP_LOOT"] = function()
-		print("Not Setup")
-	end,
-	["ESP_VALUE"] = function()
-		print("Not Setup")
-	end,
-	["ESP_POLICE"] = function()
-		print("Not Setup")
-	end,
-	["ESP_CITIZEN"] = function()
-		print("Not Setup")
-	end,
-}
+getgenv().ESP = {}
+getgenv().ESP.Enabled = false
 
-local function test()
-	print("hi")
-end
+getgenv().ESP.OnToggle = function() end
 
 for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			local func = FunctionTable[Frame.Name]
-			if func then
-				func()
-			end
+			getgenv().ESP.Enabled = not getgenv().ESP.Enabled
+			updateVisual()
+			getgenv().ESP.OnToggle(getgenv().ESP.Enabled)
 		end
 	end)
-end
-
-getgenv().SetButtonAction = function(Function, newFunc)
-	if typeof(newFunc) == "function" and FunctionTable[Function] then
-		FunctionTable[Function] = newFunc
-	end
 end
