@@ -1,4 +1,4 @@
-print("Version 0.0.0.1")
+print("Version 0.0.0.2")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -269,11 +269,20 @@ getgenv().ESP.Enabled = false
 
 getgenv().ESP.OnToggle = function() end
 
+local FunctionTable = { 
+	["ESP_BUTTON"] = function() 
+		getgenv().ESP.Enabled = not getgenv().ESP.Enabled
+		getgenv().ESP.OnToggle(getgenv().ESP.Enabled)
+	end,
+}
+
 for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			getgenv().ESP.Enabled = not getgenv().ESP.Enabled
-			getgenv().ESP.OnToggle("yo")
+			if FunctionTable[Frame.Name] then
+				local Func = FunctionTable[Frame.Name]
+				Func()
+			end
 		end
 	end)
 end
