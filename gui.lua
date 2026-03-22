@@ -1,4 +1,4 @@
-print("Version 0.0.0.44")
+print("Version 0.0.0.45")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -287,12 +287,12 @@ local FunctionTable = {
 		UpdateVisualToggle("ESP_Frame", "ESP_BUTTON", getgenv().ESP.Enabled)
 	end,
 	["ESP_POLICE"] = function() 
-		getgenv().ESP.Citizen = not getgenv().ESP.Citizen
-		UpdateVisualToggle("ESP_Frame", "ESP_POLICE", getgenv().ESP.Citizen)
+		getgenv().ESP.Police = not getgenv().ESP.Police
+		UpdateVisualToggle("ESP_Frame", "ESP_POLICE", getgenv().ESP.Police)
 	end,
 	["ESP_CITIZEN"] = function() 
-		getgenv().ESP.Police = not getgenv().ESP.Police
-		UpdateVisualToggle("ESP_Frame", "ESP_CITIZEN", getgenv().ESP.Police)
+		getgenv().ESP.Citizen = not getgenv().ESP.Citizen
+		UpdateVisualToggle("ESP_Frame", "ESP_CITIZEN", getgenv().ESP.Citizen)
 	end,
 }
 
