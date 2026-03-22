@@ -1,4 +1,4 @@
-print("Version 0.0.0.4")
+print("Version 0.0.0.41")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -26,7 +26,7 @@ local Selection_AIM = Instance.new("TextLabel")
 local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
