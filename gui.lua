@@ -21,6 +21,7 @@ local Selection_Frame = Instance.new("Frame")
 local Selection_ESP = Instance.new("TextLabel")
 local Selection_CHARACTER = Instance.new("TextLabel")
 local Selection_AIM = Instance.new("TextLabel")
+local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
 Main.Parent = game:GetService("CoreGui")
@@ -35,6 +36,12 @@ Main_2.BorderSizePixel = 0
 Main_2.Position = UDim2.new(0.365624994, 0, 0.0731481463, 0)
 Main_2.Size = UDim2.new(0.235416651, 0, 0.312037051, 0)
 Main_2.ZIndex = 50
+
+UIIDragDetector.Parent = Main_2
+UIIDragDetector.ActivatedCursorIcon = "rbxassetid://0"
+UIIDragDetector.ActivatedCursorIconContent = "rbxassetid://0"
+UIIDragDetector.CursorIcon = "rbxassetid://0"
+UIIDragDetector.CursorIconContent = "rbxassetid://0"
 
 Title.Name = "Title"
 Title.Parent = Main_2
