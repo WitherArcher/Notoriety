@@ -23,7 +23,7 @@ local Selection_CHARACTER = Instance.new("TextLabel")
 local Selection_AIM = Instance.new("TextLabel")
 
 Main.Name = "Main"
-Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -255,3 +255,25 @@ Selection_AIM.Text = "Aim"
 Selection_AIM.TextColor3 = Color3.fromRGB(255, 255, 255)
 Selection_AIM.TextSize = 18.000
 Selection_AIM.TextWrapped = true
+
+local FunctionTable = {
+	["ESP_FUNCTION"] = function()
+		print("Not Setup")
+	end,
+}
+
+ESP_BUTTON.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		local func = FunctionTable["ESP_FUNCTION"]
+		if func then
+			func()
+		end
+	end
+end)
+
+getgenv().SetButtonAction = function(Function, newFunc)
+	if typeof(newFunc) == "function" and FunctionTable[Function] then
+		FunctionTable[Function] = newFunc
+	end
+end
+
