@@ -39,9 +39,7 @@ Main_2.ZIndex = 50
 
 UIIDragDetector.Parent = Main_2
 UIIDragDetector.ActivatedCursorIcon = "rbxassetid://0"
-UIIDragDetector.ActivatedCursorIconContent = "rbxassetid://0"
 UIIDragDetector.CursorIcon = "rbxassetid://0"
-UIIDragDetector.CursorIconContent = "rbxassetid://0"
 
 Title.Name = "Title"
 Title.Parent = Main_2
@@ -285,4 +283,3 @@ getgenv().SetButtonAction = function(Function, newFunc)
 		FunctionTable[Function] = newFunc
 	end
 end
-
