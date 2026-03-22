@@ -1,3 +1,5 @@
+print("Version 0.0.0.1")
+
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
