@@ -1,4 +1,4 @@
-print("Version 0.0.0.42")
+print("Version 0.0.0.44")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -272,8 +272,8 @@ getgenv().ESP.Police = false
 getgenv().ESP.Update  = function() end
 
 local function UpdateVisualToggle(Holder, Frame, bool)
-	local Button = Main_2[Holder][Frame]
-	print(Button)
+	local Button = Main_2[Holder][Frame]:FindFirstChildWhichIsA("Frame")
+
 	if bool then
 		Button.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
 	else
