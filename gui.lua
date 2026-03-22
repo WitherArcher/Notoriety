@@ -271,7 +271,7 @@ for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			getgenv().ESP.Enabled = not getgenv().ESP.Enabled
-			getgenv().ESP.OnToggle(print("Yo"))
+			getgenv().ESP.OnToggle("yo")
 		end
 	end)
 end
