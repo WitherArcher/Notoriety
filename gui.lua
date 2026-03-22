@@ -27,7 +27,6 @@ Main.Name = "Main"
 Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
-
 Main_2.Name = "Main"
 Main_2.Parent = Main
 Main_2.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
@@ -264,19 +263,37 @@ Selection_AIM.TextSize = 18.000
 Selection_AIM.TextWrapped = true
 
 local FunctionTable = {
-	["ESP_FUNCTION"] = function()
+	["ESP_BUTTON"] = function()
+		print("Not Setup")
+	end,
+	["ESP_LOOT"] = function()
+		print("Not Setup")
+	end,
+	["ESP_VALUE"] = function()
+		print("Not Setup")
+	end,
+	["ESP_POLICE"] = function()
+		print("Not Setup")
+	end,
+	["ESP_CITIZEN"] = function()
 		print("Not Setup")
 	end,
 }
 
-ESP_BUTTON.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 then
-		local func = FunctionTable["ESP_FUNCTION"]
-		if func then
-			func()
+local function test()
+	print("hi")
+end
+
+for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
+	Frame.InputBegan:Connect(function(input : InputObject)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			local func = FunctionTable[Frame.Name]
+			if func then
+				func()
+			end
 		end
-	end
-end)
+	end)
+end
 
 getgenv().SetButtonAction = function(Function, newFunc)
 	if typeof(newFunc) == "function" and FunctionTable[Function] then
