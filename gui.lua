@@ -1,4 +1,4 @@
-print("Version 0.0.0.2")
+print("Version 0.0.0.3")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -8,25 +8,24 @@ local ESP_BUTTON = Instance.new("Frame")
 local ESP_TOGGLE = Instance.new("TextLabel")
 local ESP_TOGGLE_2 = Instance.new("Frame")
 local ESP_POLICE = Instance.new("Frame")
-local ESP_POLICE_2 = Instance.new("TextLabel")
-local ESP_POLICE_3 = Instance.new("Frame")
+local ESP_POLICE_TOGGLE = Instance.new("TextLabel")
+local ESP_POLICE_TOGGLE_2 = Instance.new("Frame")
 local ESP_CITIZEN = Instance.new("Frame")
-local ESP_CITIZEN_2 = Instance.new("TextLabel")
-local ESP_CITIZEN_3 = Instance.new("Frame")
+local ESP_CITIZEN_TOGGLE = Instance.new("TextLabel")
+local ESP_CITIZEN_TOGGLE_2 = Instance.new("Frame")
 local ESP_LOOT = Instance.new("Frame")
-local ESP_LOOT_2 = Instance.new("TextLabel")
-local ESP_LOOT_3 = Instance.new("Frame")
+local ESP_LOOT_TOGGLE = Instance.new("TextLabel")
+local ESP_LOOT_TOGGLE_2 = Instance.new("Frame")
 local ESP_VALUE = Instance.new("Frame")
-local ESP_VALUE_2 = Instance.new("TextLabel")
-local ESP_VALUE_3 = Instance.new("Frame")
+local ESP_VALUE_TOGGLE = Instance.new("TextLabel")
+local ESP_VALUE_TOGGLE_2 = Instance.new("Frame")
 local Selection_Frame = Instance.new("Frame")
 local Selection_ESP = Instance.new("TextLabel")
 local Selection_CHARACTER = Instance.new("TextLabel")
 local Selection_AIM = Instance.new("TextLabel")
-local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game:GetService("CoreGui")
+Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -102,26 +101,26 @@ ESP_POLICE.BorderSizePixel = 0
 ESP_POLICE.Position = UDim2.new(0.0398126468, 0, 0.149253726, 0)
 ESP_POLICE.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
-ESP_POLICE_2.Name = "ESP_POLICE"
-ESP_POLICE_2.Parent = ESP_POLICE
-ESP_POLICE_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_POLICE_2.BackgroundTransparency = 1.000
-ESP_POLICE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_POLICE_2.BorderSizePixel = 0
-ESP_POLICE_2.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
-ESP_POLICE_2.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
-ESP_POLICE_2.Font = Enum.Font.Code
-ESP_POLICE_2.Text = "Enable Police"
-ESP_POLICE_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESP_POLICE_2.TextSize = 14.000
-ESP_POLICE_2.TextXAlignment = Enum.TextXAlignment.Left
+ESP_POLICE_TOGGLE.Name = "ESP_POLICE_TOGGLE"
+ESP_POLICE_TOGGLE.Parent = ESP_POLICE
+ESP_POLICE_TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_POLICE_TOGGLE.BackgroundTransparency = 1.000
+ESP_POLICE_TOGGLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_POLICE_TOGGLE.BorderSizePixel = 0
+ESP_POLICE_TOGGLE.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
+ESP_POLICE_TOGGLE.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
+ESP_POLICE_TOGGLE.Font = Enum.Font.Code
+ESP_POLICE_TOGGLE.Text = "Enable Police"
+ESP_POLICE_TOGGLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_POLICE_TOGGLE.TextSize = 14.000
+ESP_POLICE_TOGGLE.TextXAlignment = Enum.TextXAlignment.Left
 
-ESP_POLICE_3.Name = "ESP_POLICE"
-ESP_POLICE_3.Parent = ESP_POLICE
-ESP_POLICE_3.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-ESP_POLICE_3.BorderColor3 = Color3.fromRGB(47, 47, 47)
-ESP_POLICE_3.Position = UDim2.new(0, 0, 0.241379306, 0)
-ESP_POLICE_3.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+ESP_POLICE_TOGGLE_2.Name = "ESP_POLICE_TOGGLE"
+ESP_POLICE_TOGGLE_2.Parent = ESP_POLICE
+ESP_POLICE_TOGGLE_2.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_POLICE_TOGGLE_2.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_POLICE_TOGGLE_2.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_POLICE_TOGGLE_2.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
 ESP_CITIZEN.Name = "ESP_CITIZEN"
 ESP_CITIZEN.Parent = ESP_Frame
@@ -132,26 +131,26 @@ ESP_CITIZEN.BorderSizePixel = 0
 ESP_CITIZEN.Position = UDim2.new(0.0399999991, 0, 0.252999991, 0)
 ESP_CITIZEN.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
-ESP_CITIZEN_2.Name = "ESP_CITIZEN"
-ESP_CITIZEN_2.Parent = ESP_CITIZEN
-ESP_CITIZEN_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_CITIZEN_2.BackgroundTransparency = 1.000
-ESP_CITIZEN_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_CITIZEN_2.BorderSizePixel = 0
-ESP_CITIZEN_2.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
-ESP_CITIZEN_2.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
-ESP_CITIZEN_2.Font = Enum.Font.Code
-ESP_CITIZEN_2.Text = "Enable Citizen"
-ESP_CITIZEN_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESP_CITIZEN_2.TextSize = 14.000
-ESP_CITIZEN_2.TextXAlignment = Enum.TextXAlignment.Left
+ESP_CITIZEN_TOGGLE.Name = "ESP_CITIZEN_TOGGLE"
+ESP_CITIZEN_TOGGLE.Parent = ESP_CITIZEN
+ESP_CITIZEN_TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CITIZEN_TOGGLE.BackgroundTransparency = 1.000
+ESP_CITIZEN_TOGGLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_CITIZEN_TOGGLE.BorderSizePixel = 0
+ESP_CITIZEN_TOGGLE.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
+ESP_CITIZEN_TOGGLE.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
+ESP_CITIZEN_TOGGLE.Font = Enum.Font.Code
+ESP_CITIZEN_TOGGLE.Text = "Enable Citizen"
+ESP_CITIZEN_TOGGLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CITIZEN_TOGGLE.TextSize = 14.000
+ESP_CITIZEN_TOGGLE.TextXAlignment = Enum.TextXAlignment.Left
 
-ESP_CITIZEN_3.Name = "ESP_CITIZEN"
-ESP_CITIZEN_3.Parent = ESP_CITIZEN
-ESP_CITIZEN_3.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-ESP_CITIZEN_3.BorderColor3 = Color3.fromRGB(47, 47, 47)
-ESP_CITIZEN_3.Position = UDim2.new(0, 0, 0.241379306, 0)
-ESP_CITIZEN_3.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+ESP_CITIZEN_TOGGLE_2.Name = "ESP_CITIZEN_TOGGLE"
+ESP_CITIZEN_TOGGLE_2.Parent = ESP_CITIZEN
+ESP_CITIZEN_TOGGLE_2.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_CITIZEN_TOGGLE_2.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_CITIZEN_TOGGLE_2.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_CITIZEN_TOGGLE_2.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
 ESP_LOOT.Name = "ESP_LOOT"
 ESP_LOOT.Parent = ESP_Frame
@@ -162,26 +161,26 @@ ESP_LOOT.BorderSizePixel = 0
 ESP_LOOT.Position = UDim2.new(0.64200002, 0, 0.0450000018, 0)
 ESP_LOOT.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
-ESP_LOOT_2.Name = "ESP_LOOT"
-ESP_LOOT_2.Parent = ESP_LOOT
-ESP_LOOT_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_LOOT_2.BackgroundTransparency = 1.000
-ESP_LOOT_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_LOOT_2.BorderSizePixel = 0
-ESP_LOOT_2.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
-ESP_LOOT_2.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
-ESP_LOOT_2.Font = Enum.Font.Code
-ESP_LOOT_2.Text = "Enable Loot ESP"
-ESP_LOOT_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESP_LOOT_2.TextSize = 14.000
-ESP_LOOT_2.TextXAlignment = Enum.TextXAlignment.Left
+ESP_LOOT_TOGGLE.Name = "ESP_LOOT_TOGGLE"
+ESP_LOOT_TOGGLE.Parent = ESP_LOOT
+ESP_LOOT_TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_LOOT_TOGGLE.BackgroundTransparency = 1.000
+ESP_LOOT_TOGGLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_LOOT_TOGGLE.BorderSizePixel = 0
+ESP_LOOT_TOGGLE.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_LOOT_TOGGLE.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_LOOT_TOGGLE.Font = Enum.Font.Code
+ESP_LOOT_TOGGLE.Text = "Enable Loot ESP"
+ESP_LOOT_TOGGLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_LOOT_TOGGLE.TextSize = 14.000
+ESP_LOOT_TOGGLE.TextXAlignment = Enum.TextXAlignment.Left
 
-ESP_LOOT_3.Name = "ESP_LOOT"
-ESP_LOOT_3.Parent = ESP_LOOT
-ESP_LOOT_3.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-ESP_LOOT_3.BorderColor3 = Color3.fromRGB(47, 47, 47)
-ESP_LOOT_3.Position = UDim2.new(0, 0, 0.241379306, 0)
-ESP_LOOT_3.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+ESP_LOOT_TOGGLE_2.Name = "ESP_LOOT_TOGGLE"
+ESP_LOOT_TOGGLE_2.Parent = ESP_LOOT
+ESP_LOOT_TOGGLE_2.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_LOOT_TOGGLE_2.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_LOOT_TOGGLE_2.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_LOOT_TOGGLE_2.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
 ESP_VALUE.Name = "ESP_VALUE"
 ESP_VALUE.Parent = ESP_Frame
@@ -192,26 +191,26 @@ ESP_VALUE.BorderSizePixel = 0
 ESP_VALUE.Position = UDim2.new(0.64200002, 0, 0.149000004, 0)
 ESP_VALUE.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
-ESP_VALUE_2.Name = "ESP_VALUE"
-ESP_VALUE_2.Parent = ESP_VALUE
-ESP_VALUE_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_VALUE_2.BackgroundTransparency = 1.000
-ESP_VALUE_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_VALUE_2.BorderSizePixel = 0
-ESP_VALUE_2.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
-ESP_VALUE_2.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
-ESP_VALUE_2.Font = Enum.Font.Code
-ESP_VALUE_2.Text = "Enable Value"
-ESP_VALUE_2.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESP_VALUE_2.TextSize = 14.000
-ESP_VALUE_2.TextXAlignment = Enum.TextXAlignment.Left
+ESP_VALUE_TOGGLE.Name = "ESP_VALUE_TOGGLE"
+ESP_VALUE_TOGGLE.Parent = ESP_VALUE
+ESP_VALUE_TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_VALUE_TOGGLE.BackgroundTransparency = 1.000
+ESP_VALUE_TOGGLE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_VALUE_TOGGLE.BorderSizePixel = 0
+ESP_VALUE_TOGGLE.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_VALUE_TOGGLE.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_VALUE_TOGGLE.Font = Enum.Font.Code
+ESP_VALUE_TOGGLE.Text = "Enable Value"
+ESP_VALUE_TOGGLE.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_VALUE_TOGGLE.TextSize = 14.000
+ESP_VALUE_TOGGLE.TextXAlignment = Enum.TextXAlignment.Left
 
-ESP_VALUE_3.Name = "ESP_VALUE"
-ESP_VALUE_3.Parent = ESP_VALUE
-ESP_VALUE_3.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-ESP_VALUE_3.BorderColor3 = Color3.fromRGB(47, 47, 47)
-ESP_VALUE_3.Position = UDim2.new(0, 0, 0.241379306, 0)
-ESP_VALUE_3.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+ESP_VALUE_TOGGLE_2.Name = "ESP_VALUE_TOGGLE"
+ESP_VALUE_TOGGLE_2.Parent = ESP_VALUE
+ESP_VALUE_TOGGLE_2.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_VALUE_TOGGLE_2.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_VALUE_TOGGLE_2.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_VALUE_TOGGLE_2.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
 Selection_Frame.Name = "Selection_Frame"
 Selection_Frame.Parent = Main_2
@@ -266,13 +265,33 @@ Selection_AIM.TextWrapped = true
 
 getgenv().ESP = {}
 getgenv().ESP.Enabled = false
+getgenv().ESP.Citizen = false
+getgenv().ESP.Police = false
 
-getgenv().ESP.OnToggle = function() end
+getgenv().ESP.Update  = function() end
+
+local function UpdateVisualToggle(Holder, Frame, bool)
+	local Button = Main_2[Holder][Frame]
+	
+	if bool then
+		Button.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
+	else
+		Button.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+	end
+end
 
 local FunctionTable = { 
 	["ESP_BUTTON"] = function() 
 		getgenv().ESP.Enabled = not getgenv().ESP.Enabled
-		getgenv().ESP.OnToggle(getgenv().ESP.Enabled)
+		UpdateVisualToggle("ESP_Frame", "ESP_BUTTON", getgenv().ESP.Enabled)
+	end,
+	["ESP_POLICE"] = function() 
+		getgenv().ESP.Citizen = not getgenv().ESP.Citizen
+		UpdateVisualToggle("ESP_Frame", "ESP_POLICE", getgenv().ESP.Citizen)
+	end,
+	["ESP_CITIZEN"] = function() 
+		getgenv().ESP.Police = not getgenv().ESP.Police
+		UpdateVisualToggle("ESP_Frame", "ESP_CITIZEN", getgenv().ESP.Police)
 	end,
 }
 
@@ -282,6 +301,7 @@ for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 			if FunctionTable[Frame.Name] then
 				local Func = FunctionTable[Frame.Name]
 				Func()
+				getgenv().ESP.Update()
 			end
 		end
 	end)
