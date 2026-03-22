@@ -23,6 +23,7 @@ local Selection_Frame = Instance.new("Frame")
 local Selection_ESP = Instance.new("TextLabel")
 local Selection_CHARACTER = Instance.new("TextLabel")
 local Selection_AIM = Instance.new("TextLabel")
+local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
 Main.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
