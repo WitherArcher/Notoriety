@@ -26,6 +26,7 @@ Main.Name = "Main"
 Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+
 Main_2.Name = "Main"
 Main_2.Parent = Main
 Main_2.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
@@ -33,6 +34,7 @@ Main_2.BorderColor3 = Color3.fromRGB(191, 191, 191)
 Main_2.BorderSizePixel = 0
 Main_2.Position = UDim2.new(0.365624994, 0, 0.0731481463, 0)
 Main_2.Size = UDim2.new(0.235416651, 0, 0.312037051, 0)
+Main_2.ZIndex = 50
 
 Title.Name = "Title"
 Title.Parent = Main_2
