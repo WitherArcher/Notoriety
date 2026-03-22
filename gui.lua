@@ -1,4 +1,4 @@
-print("Version 0.0.0.3")
+print("Version 0.0.0.4")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
