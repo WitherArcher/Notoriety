@@ -1,4 +1,4 @@
-print("Version 0.0.0.68")
+print("Version 0.0.0.69")
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -529,8 +529,8 @@ getgenv().CHARACTER = {}
 getgenv().CHARACTER.InfiniteAmmo = false
 getgenv().CHARACTER.InfiniteAmmoFunction  = function() end
 
---getgenv().MISC = {}
---getgenv().MISC.BAGTP = false
+getgenv().MISC = {}
+getgenv().MISC.BAGTP = false
 
 
 local function UpdateVisualToggle(Holder, Frame, bool)
@@ -547,7 +547,6 @@ local FunctionTable = {
 	-- // ESP
 	["ESP_BUTTON"] = function() 
 		getgenv().ESP.Enabled = not getgenv().ESP.Enabled
-		print("RAN")
 		UpdateVisualToggle("ESP_Frame", "ESP_BUTTON", getgenv().ESP.Enabled)
 	end,
 	["ESP_POLICE"] = function() 
@@ -573,18 +572,18 @@ local FunctionTable = {
 		UpdateVisualToggle("CHARACTER_Frame", "INFAMMO_BUTTON", getgenv().CHARACTER.InfiniteAmmo)
 		getgenv().CHARACTER.InfiniteAmmoFunction()
 	end,
-	-- // MISC
-	--["BAGTP_BUTTON"] = function() 
-	--	getgenv().MISC.BAGTP = not getgenv().MISC.BAGTP
-	--	UpdateVisualToggle("MISC_Frame", "BAGTP_BUTTON", getgenv().MISC.BAGTP)
-	--end,
+	 -- // MISC
+	["BAGTP_BUTTON"] = function() 
+		getgenv().MISC.BAGTP = not getgenv().MISC.BAGTP
+		UpdateVisualToggle("MISC_Frame", "BAGTP_BUTTON", getgenv().MISC.BAGTP)
+	end,
 }
 
---local KeybindFunctions = {
---	["BAGTP_KEYBIND"] = function(key)
---		getgenv().Keybinds["BAGTP"] = key
---	end,
---}
+local KeybindFunctions = {
+	["BAGTP_KEYBIND"] = function(key)
+		getgenv().Keybinds["BAGTP"] = key
+	end,
+}
 
 for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
@@ -592,7 +591,6 @@ for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 			if FunctionTable[Frame.Name] then
 				local Func = FunctionTable[Frame.Name]
 				Func()
-				print("Fired")
 				getgenv().ESP.Update()
 			end
 		end
@@ -610,40 +608,40 @@ for _, Frame : Frame in pairs(CHARACTER_Frame:GetChildren()) do
 	end)
 end
 
---for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
---	Frame.InputBegan:Connect(function(input : InputObject)
---		if input.UserInputType == Enum.UserInputType.MouseButton1 then
---			if FunctionTable[Frame.Name] then
---				local Func = FunctionTable[Frame.Name]
---				Func()
---			end
---		end
---	end)
---end
+for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
+	Frame.InputBegan:Connect(function(input : InputObject)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			if FunctionTable[Frame.Name] then
+				local Func = FunctionTable[Frame.Name]
+				Func()
+			end
+		end
+	end)
+end
 
---for _, TextLabel : TextLabel in pairs(Main_2:GetDescendants()) do
---	local parts = string.split(TextLabel.Name, "_")
---	local result = parts[2]
+for _, TextLabel : TextLabel in pairs(Main_2:GetDescendants()) do
+	local parts = string.split(TextLabel.Name, "_")
+	local result = parts[2]
 	
---	if TextLabel:IsA("TextLabel") and result == "KEYBIND" then
---		TextLabel.InputBegan:Connect(function(input)
---			if input.UserInputType == Enum.UserInputType.MouseButton1 then
---				TextLabel.Text = "[..]"
+	if TextLabel:IsA("TextLabel") and result == "KEYBIND" then
+		TextLabel.InputBegan:Connect(function(input)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				TextLabel.Text = "[..]"
 				
---				conn = UserInputService.InputBegan:Connect(function(input)
---					if input.KeyCode == Enum.KeyCode.Unknown then return end
+				conn = UserInputService.InputBegan:Connect(function(input)
+					if input.KeyCode == Enum.KeyCode.Unknown then return end
 					
---					if input.KeyCode then
---						TextLabel.Text = ("["..input.KeyCode.Name.."]")
---						local Func = KeybindFunctions[TextLabel.Name]
---						Func(input.KeyCode)
---						conn:Disconnect()
---					end
---				end)
---			end
---		end)
---	end
---end
+					if input.KeyCode then
+						TextLabel.Text = ("["..input.KeyCode.Name.."]")
+						local Func = KeybindFunctions[TextLabel.Name]
+						Func(input.KeyCode)
+						conn:Disconnect()
+					end
+				end)
+			end
+		end)
+	end
+end
 
 for _, Frame : TextLabel in pairs(Selection_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
