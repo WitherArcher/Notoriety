@@ -1,4 +1,4 @@
-print("Version 0.0.0.6")
+print("Version 0.0.0.61")
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -560,8 +560,8 @@ local FunctionTable = {
 	end,
 	["INFAMMO_BUTTON"] = function() 
 		getgenv().CHARACTER.InfiniteAmmo = not getgenv().CHARACTER.InfiniteAmmo
-		getgenv().CHARACTER.InfiniteAmmoFunction.Update()
 		UpdateVisualToggle("CHARACTER_Frame", "INFAMMO_BUTTON", getgenv().CHARACTER.InfiniteAmmo)
+		getgenv().CHARACTER.InfiniteAmmoFunction()
 	end,
 }
 
