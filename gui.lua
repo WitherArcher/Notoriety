@@ -1,4 +1,4 @@
-print("Version 0.0.0.67")
+print("Version 0.0.0.68")
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -574,10 +574,10 @@ local FunctionTable = {
 		getgenv().CHARACTER.InfiniteAmmoFunction()
 	end,
 	-- // MISC
-	["BAGTP_BUTTON"] = function() 
-		getgenv().MISC.BAGTP = not getgenv().MISC.BAGTP
-		UpdateVisualToggle("MISC_Frame", "BAGTP_BUTTON", getgenv().MISC.BAGTP)
-	end,
+	--["BAGTP_BUTTON"] = function() 
+	--	getgenv().MISC.BAGTP = not getgenv().MISC.BAGTP
+	--	UpdateVisualToggle("MISC_Frame", "BAGTP_BUTTON", getgenv().MISC.BAGTP)
+	--end,
 }
 
 --local KeybindFunctions = {
