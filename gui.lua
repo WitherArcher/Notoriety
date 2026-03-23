@@ -1,4 +1,4 @@
-print("Version 0.0.0.66")
+print("Version 0.0.0.67")
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -610,16 +610,16 @@ for _, Frame : Frame in pairs(CHARACTER_Frame:GetChildren()) do
 	end)
 end
 
-for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
-	Frame.InputBegan:Connect(function(input : InputObject)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 then
-			if FunctionTable[Frame.Name] then
-				local Func = FunctionTable[Frame.Name]
-				Func()
-			end
-		end
-	end)
-end
+--for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
+--	Frame.InputBegan:Connect(function(input : InputObject)
+--		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+--			if FunctionTable[Frame.Name] then
+--				local Func = FunctionTable[Frame.Name]
+--				Func()
+--			end
+--		end
+--	end)
+--end
 
 --for _, TextLabel : TextLabel in pairs(Main_2:GetDescendants()) do
 --	local parts = string.split(TextLabel.Name, "_")
