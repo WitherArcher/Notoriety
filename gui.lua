@@ -1,4 +1,4 @@
-print("Version 0.0.0.65")
+print("Version 0.0.0.66")
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -529,8 +529,8 @@ getgenv().CHARACTER = {}
 getgenv().CHARACTER.InfiniteAmmo = false
 getgenv().CHARACTER.InfiniteAmmoFunction  = function() end
 
-getgenv().MISC = {}
-getgenv().MISC.BAGTP = false
+--getgenv().MISC = {}
+--getgenv().MISC.BAGTP = false
 
 
 local function UpdateVisualToggle(Holder, Frame, bool)
@@ -580,11 +580,11 @@ local FunctionTable = {
 	end,
 }
 
-local KeybindFunctions = {
-	["BAGTP_KEYBIND"] = function(key)
-		getgenv().Keybinds["BAGTP"] = key
-	end,
-}
+--local KeybindFunctions = {
+--	["BAGTP_KEYBIND"] = function(key)
+--		getgenv().Keybinds["BAGTP"] = key
+--	end,
+--}
 
 for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
@@ -621,29 +621,29 @@ for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
 	end)
 end
 
-for _, TextLabel : TextLabel in pairs(Main_2:GetDescendants()) do
-	local parts = string.split(TextLabel.Name, "_")
-	local result = parts[2]
+--for _, TextLabel : TextLabel in pairs(Main_2:GetDescendants()) do
+--	local parts = string.split(TextLabel.Name, "_")
+--	local result = parts[2]
 	
-	if TextLabel:IsA("TextLabel") and result == "KEYBIND" then
-		TextLabel.InputBegan:Connect(function(input)
-			if input.UserInputType == Enum.UserInputType.MouseButton1 then
-				TextLabel.Text = "[..]"
+--	if TextLabel:IsA("TextLabel") and result == "KEYBIND" then
+--		TextLabel.InputBegan:Connect(function(input)
+--			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+--				TextLabel.Text = "[..]"
 				
-				conn = UserInputService.InputBegan:Connect(function(input)
-					if input.KeyCode == Enum.KeyCode.Unknown then return end
+--				conn = UserInputService.InputBegan:Connect(function(input)
+--					if input.KeyCode == Enum.KeyCode.Unknown then return end
 					
-					if input.KeyCode then
-						TextLabel.Text = ("["..input.KeyCode.Name.."]")
-						local Func = KeybindFunctions[TextLabel.Name]
-						Func(input.KeyCode)
-						conn:Disconnect()
-					end
-				end)
-			end
-		end)
-	end
-end
+--					if input.KeyCode then
+--						TextLabel.Text = ("["..input.KeyCode.Name.."]")
+--						local Func = KeybindFunctions[TextLabel.Name]
+--						Func(input.KeyCode)
+--						conn:Disconnect()
+--					end
+--				end)
+--			end
+--		end)
+--	end
+--end
 
 for _, Frame : TextLabel in pairs(Selection_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
