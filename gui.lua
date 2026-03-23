@@ -1,4 +1,4 @@
-print("Version 0.0.0.72")
+print("Version 0.0.0.73")
 
 local UserInputService = game:GetService("UserInputService")
 local Mouse = game.Players.LocalPlayer:GetMouse()
@@ -110,7 +110,7 @@ local AIMBOT_TOGGLE = Instance.new("Frame")
 local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game.Players.LocalPlayer.PlayerGui
+Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -1175,16 +1175,22 @@ getgenv().CHARACTER = {}
 getgenv().CHARACTER.InfiniteAmmo = false
 getgenv().CHARACTER.Walkspeed = false
 getgenv().CHARACTER.InfiniteAmmoFunction  = function() end
+getgenv().CHARACTER.UpdateWalkspeed  = function() end
 
 getgenv().MISC = {}
 getgenv().MISC.BAGTP = false
 getgenv().MISC.GRABNEAR = false
+getgenv().MISC.SAWNEAR = false
+getgenv().MISC.KILLPOLICE = false
+getgenv().MISC.GUARDTP = false
+getgenv().MISC.KEYCARDTP = false
 
 getgenv().Sliders = {}
 getgenv().Sliders.LootValue = 2500
 getgenv().Sliders.LootDistance = 200
 getgenv().Sliders.NPCDistance = 200
 getgenv().Sliders.WalkSpeed = 25
+
 
 local function UpdateVisualToggle(Holder, Frame, bool)
 	local Button = Main_2[Holder][Frame]:FindFirstChildWhichIsA("Frame")
@@ -1236,7 +1242,7 @@ local FunctionTable = {
 	["WALKSPEED_BUTTON"] = function() 
 		getgenv().CHARACTER.Walkspeed = not getgenv().CHARACTER.Walkspeed
 		UpdateVisualToggle("CHARACTER_Frame", "WALKSPEED_BUTTON", getgenv().CHARACTER.Walkspeed)
-		getgenv().CHARACTER.Walkspeed()
+		getgenv().CHARACTER.UpdateWalkspeed()
 	end,
 	 -- // MISC
 	["BAGTP_BUTTON"] = function() 
@@ -1247,6 +1253,22 @@ local FunctionTable = {
 		getgenv().MISC.GRABNEAR = not getgenv().MISC.GRABNEAR
 		UpdateVisualToggle("MISC_Frame", "GRABNEAR_BUTTON", getgenv().MISC.GRABNEAR)
 	end,
+	["AUTOSAW_BUTTON"] = function() 
+		getgenv().MISC.SAWNEAR = not getgenv().MISC.SAWNEAR
+		UpdateVisualToggle("MISC_Frame", "AUTOSAW_BUTTON", getgenv().MISC.SAWNEAR)
+	end,
+	["TELEPORTGUARDS_BUTTON"] = function() 
+		getgenv().MISC.KILLPOLICE = not getgenv().MISC.KILLPOLICE
+		UpdateVisualToggle("MISC_Frame", "TELEPORTGUARDS_BUTTON", getgenv().MISC.KILLPOLICE)
+	end,
+	["KEYCARDGUARDTP_BUTTON"] = function() 
+		getgenv().MISC.GUARDTP = not getgenv().MISC.GUARDTP
+		UpdateVisualToggle("MISC_Frame", "KEYCARDGUARDTP_BUTTON", getgenv().MISC.GUARDTP)
+	end,
+	["KEYCARDTP_BUTTON"] = function() 
+		getgenv().MISC.KEYCARDTP = not getgenv().MISC.KEYCARDTP
+		UpdateVisualToggle("MISC_Frame", "KEYCARDTP_BUTTON", getgenv().MISC.KEYCARDTP)
+	end,
 }
 
 local KeybindFunctions = {
@@ -1254,7 +1276,19 @@ local KeybindFunctions = {
 		getgenv().Keybinds["BAGTP"] = key
 	end,
 	["GRABNEAR_KEYBIND"] = function(key)
-		getgenv().Keybinds["BAGTP"] = key
+		getgenv().Keybinds["GRABNEAR"] = key
+	end,
+	["AUTOSAW_KEYBIND"] = function(key)
+		getgenv().Keybinds["SAWNEAR"] = key
+	end,
+	["TELEPORTGUARDS_KEYBIND"] = function(key)
+		getgenv().Keybinds["KILLPOLICE"] = key
+	end,
+	["KEYCARDGUARDTP_KEYBIND"] = function(key)
+		getgenv().Keybinds["GUARDTP"] = key
+	end,
+	["KEYCARDTP_KEYBIND"] = function(key)
+		getgenv().Keybinds["KEYCARDTP"] = key
 	end,
 }
 
