@@ -1,4 +1,4 @@
-print("Version 0.0.0.71")
+print("Version 0.0.0.72")
 
 local UserInputService = game:GetService("UserInputService")
 local Mouse = game.Players.LocalPlayer:GetMouse()
@@ -110,7 +110,7 @@ local AIMBOT_TOGGLE = Instance.new("Frame")
 local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game:GetService("CoreGui")
+Main.Parent = game.Players.LocalPlayer.PlayerGui
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -1173,6 +1173,7 @@ getgenv().ESP.Update  = function() end
 
 getgenv().CHARACTER = {}
 getgenv().CHARACTER.InfiniteAmmo = false
+getgenv().CHARACTER.Walkspeed = false
 getgenv().CHARACTER.InfiniteAmmoFunction  = function() end
 
 getgenv().MISC = {}
@@ -1231,6 +1232,11 @@ local FunctionTable = {
 		getgenv().CHARACTER.InfiniteAmmo = not getgenv().CHARACTER.InfiniteAmmo
 		UpdateVisualToggle("CHARACTER_Frame", "INFAMMO_BUTTON", getgenv().CHARACTER.InfiniteAmmo)
 		getgenv().CHARACTER.InfiniteAmmoFunction()
+	end,
+	["WALKSPEED_BUTTON"] = function() 
+		getgenv().CHARACTER.Walkspeed = not getgenv().CHARACTER.Walkspeed
+		UpdateVisualToggle("CHARACTER_Frame", "WALKSPEED_BUTTON", getgenv().CHARACTER.Walkspeed)
+		getgenv().CHARACTER.Walkspeed()
 	end,
 	 -- // MISC
 	["BAGTP_BUTTON"] = function() 
