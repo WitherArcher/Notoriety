@@ -1,6 +1,8 @@
-print("Version 0.0.0.69")
+print("Version 0.0.0.7")
 
 local UserInputService = game:GetService("UserInputService")
+local Mouse = game.Players.LocalPlayer:GetMouse()
+local MOUSE_DOWN = false
 
 local Main = Instance.new("ScreenGui")
 local Main_2 = Instance.new("Frame")
@@ -9,18 +11,42 @@ local ESP_Frame = Instance.new("Frame")
 local ESP_BUTTON = Instance.new("Frame")
 local ESP_TEXT = Instance.new("TextLabel")
 local ESP_TOGGLE = Instance.new("Frame")
-local ESP_POLICE = Instance.new("Frame")
-local ESP_POLICE_TEXT = Instance.new("TextLabel")
-local ESP_POLICE_TOGGLE = Instance.new("Frame")
 local ESP_CITIZEN = Instance.new("Frame")
 local ESP_CITIZEN_TEXT = Instance.new("TextLabel")
 local ESP_CITIZEN_TOGGLE = Instance.new("Frame")
 local ESP_LOOT = Instance.new("Frame")
 local ESP_LOOT_TEXT = Instance.new("TextLabel")
 local ESP_LOOT_TOGGLE = Instance.new("Frame")
+local ESP_LOOT_HIGHLIGHT = Instance.new("Frame")
+local ESP_HIGHLIGHT_TEXT = Instance.new("TextLabel")
+local ESP_HIGHLIGHT_TOGGLE = Instance.new("Frame")
+local ESP_LOOT_VALUE_SLIDER = Instance.new("Frame")
+local Slider = Instance.new("Frame")
+local NumberLabel = Instance.new("TextLabel")
+local ESP_NPC_DISTANCE_SLIDER = Instance.new("Frame")
+local Slider_2 = Instance.new("Frame")
+local NumberLabel_2 = Instance.new("TextLabel")
+local ESP_POLICE = Instance.new("Frame")
+local ESP_POLICE_TEXT = Instance.new("TextLabel")
+local ESP_POLICE_TOGGLE = Instance.new("Frame")
+local ESP_LOOT_NAME = Instance.new("Frame")
+local ESP_NAME_TEXT = Instance.new("TextLabel")
+local ESP_NAME_TOGGLE = Instance.new("Frame")
 local ESP_VALUE = Instance.new("Frame")
 local ESP_VALUE_TEXT = Instance.new("TextLabel")
 local ESP_VALUE_TOGGLE = Instance.new("Frame")
+local ESP_LOOT_DISTANCE_SLIDER = Instance.new("Frame")
+local Slider_3 = Instance.new("Frame")
+local NumberLabel_3 = Instance.new("TextLabel")
+local ESP_CONTAINER = Instance.new("Frame")
+local ESP_CONTAINER_TEXT = Instance.new("TextLabel")
+local ESP_CONTAINER_TOGGLE = Instance.new("Frame")
+local ESP_KEYCARD = Instance.new("Frame")
+local ESP_KEYCARD_TEXT = Instance.new("TextLabel")
+local ESP_KEYCARD_TOGGLE = Instance.new("Frame")
+local ESP_CAMERA = Instance.new("Frame")
+local ESP_CAMERA_TEXT = Instance.new("TextLabel")
+local ESP_CAMERA_TOGGLE = Instance.new("Frame")
 local Selection_Frame = Instance.new("Frame")
 local Selection_ESP = Instance.new("TextLabel")
 local Selection_CHARACTER = Instance.new("TextLabel")
@@ -39,10 +65,44 @@ local GRABNEAR_BUTTON = Instance.new("Frame")
 local GRABNEAR_TEXT = Instance.new("TextLabel")
 local GRABNEAR_TOGGLE = Instance.new("Frame")
 local GRABNEAR_KEYBIND = Instance.new("TextLabel")
+local TELEPORTGUARDS_BUTTON = Instance.new("Frame")
+local TELEPORTGUARDS_TEXT = Instance.new("TextLabel")
+local TELEPORTGUARDS_TOGGLE = Instance.new("Frame")
+local TELEPORTGUARDS_KEYBIND = Instance.new("TextLabel")
+local KEYCARDTP_BUTTON = Instance.new("Frame")
+local KEYCARDTP_TEXT = Instance.new("TextLabel")
+local KEYCARDTP_TOGGLE = Instance.new("Frame")
+local KEYCARDTP_KEYBIND = Instance.new("TextLabel")
+local AUTOSECURE_BUTTON = Instance.new("Frame")
+local AUTOSECURE_TEXT = Instance.new("TextLabel")
+local AUTOSECURE_TOGGLE = Instance.new("Frame")
+local AUTOSECURE_KEYBIND = Instance.new("TextLabel")
+local KEYCARDGUARDTP_BUTTON = Instance.new("Frame")
+local KEYCARDGUARDTP_TEXT = Instance.new("TextLabel")
+local KEYCARDGUARDTP_TOGGLE = Instance.new("Frame")
+local KEYCARDGUARDTP_KEYBIND = Instance.new("TextLabel")
 local CHARACTER_Frame = Instance.new("Frame")
 local INFAMMO_BUTTON = Instance.new("Frame")
 local INFAMMO_TEXT = Instance.new("TextLabel")
 local INFAMMO_TOGGLE = Instance.new("Frame")
+local NOBAGSLOW_BUTTON = Instance.new("Frame")
+local NOBAGSLOW_TEXT = Instance.new("TextLabel")
+local NOBAGSLOW_TOGGLE = Instance.new("Frame")
+local ALWAYSHEADSHOT_BUTTON = Instance.new("Frame")
+local ALWAYSHEADSHOT_TEXT = Instance.new("TextLabel")
+local ALWAYSHEADSHOT_TOGGLE = Instance.new("Frame")
+local INFINITEJUMP_BUTTON = Instance.new("Frame")
+local INFINITEJUMP_TEXT = Instance.new("TextLabel")
+local INFINITEJUMP_TOGGLE = Instance.new("Frame")
+local NOCLIP_BUTTON = Instance.new("Frame")
+local NOCLIP_TEXT = Instance.new("TextLabel")
+local NOCLIP_TOGGLE = Instance.new("Frame")
+local WALKSPEED_BUTTON = Instance.new("Frame")
+local WALKSPEED_TEXT = Instance.new("TextLabel")
+local WALKSPEED_TOGGLE = Instance.new("Frame")
+local WALKSPEED_VALUE_SLIDER = Instance.new("Frame")
+local Slider_4 = Instance.new("Frame")
+local NumberLabel_4 = Instance.new("TextLabel")
 local AIM_Frame = Instance.new("Frame")
 local AIMBOT_BUTTON = Instance.new("Frame")
 local AIMBOT_TEXT = Instance.new("TextLabel")
@@ -50,7 +110,7 @@ local AIMBOT_TOGGLE = Instance.new("Frame")
 local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game:GetService("CoreGui")
+Main.Parent = game.Players.LocalPlayer.PlayerGui
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -117,43 +177,13 @@ ESP_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
 ESP_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
 ESP_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
-ESP_POLICE.Name = "ESP_POLICE"
-ESP_POLICE.Parent = ESP_Frame
-ESP_POLICE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_POLICE.BackgroundTransparency = 1.000
-ESP_POLICE.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_POLICE.BorderSizePixel = 0
-ESP_POLICE.Position = UDim2.new(0.0398126468, 0, 0.149253726, 0)
-ESP_POLICE.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
-
-ESP_POLICE_TEXT.Name = "ESP_POLICE_TEXT"
-ESP_POLICE_TEXT.Parent = ESP_POLICE
-ESP_POLICE_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ESP_POLICE_TEXT.BackgroundTransparency = 1.000
-ESP_POLICE_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
-ESP_POLICE_TEXT.BorderSizePixel = 0
-ESP_POLICE_TEXT.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
-ESP_POLICE_TEXT.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
-ESP_POLICE_TEXT.Font = Enum.Font.Code
-ESP_POLICE_TEXT.Text = "Enable Police"
-ESP_POLICE_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
-ESP_POLICE_TEXT.TextSize = 14.000
-ESP_POLICE_TEXT.TextXAlignment = Enum.TextXAlignment.Left
-
-ESP_POLICE_TOGGLE.Name = "ESP_POLICE_TOGGLE"
-ESP_POLICE_TOGGLE.Parent = ESP_POLICE
-ESP_POLICE_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
-ESP_POLICE_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
-ESP_POLICE_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
-ESP_POLICE_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
-
 ESP_CITIZEN.Name = "ESP_CITIZEN"
 ESP_CITIZEN.Parent = ESP_Frame
 ESP_CITIZEN.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ESP_CITIZEN.BackgroundTransparency = 1.000
 ESP_CITIZEN.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ESP_CITIZEN.BorderSizePixel = 0
-ESP_CITIZEN.Position = UDim2.new(0.0399999991, 0, 0.252999991, 0)
+ESP_CITIZEN.Position = UDim2.new(0.0400000401, 0, 0.332462698, 0)
 ESP_CITIZEN.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
 ESP_CITIZEN_TEXT.Name = "ESP_CITIZEN_TEXT"
@@ -162,7 +192,7 @@ ESP_CITIZEN_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ESP_CITIZEN_TEXT.BackgroundTransparency = 1.000
 ESP_CITIZEN_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ESP_CITIZEN_TEXT.BorderSizePixel = 0
-ESP_CITIZEN_TEXT.Position = UDim2.new(0.321839094, 0, 0.0284828972, 0)
+ESP_CITIZEN_TEXT.Position = UDim2.new(0.310344815, 0, -0.0749653801, 0)
 ESP_CITIZEN_TEXT.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
 ESP_CITIZEN_TEXT.Font = Enum.Font.Code
 ESP_CITIZEN_TEXT.Text = "Enable Citizen"
@@ -207,13 +237,159 @@ ESP_LOOT_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
 ESP_LOOT_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
 ESP_LOOT_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
+ESP_LOOT_HIGHLIGHT.Name = "ESP_LOOT_HIGHLIGHT"
+ESP_LOOT_HIGHLIGHT.Parent = ESP_Frame
+ESP_LOOT_HIGHLIGHT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_LOOT_HIGHLIGHT.BackgroundTransparency = 1.000
+ESP_LOOT_HIGHLIGHT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_LOOT_HIGHLIGHT.BorderSizePixel = 0
+ESP_LOOT_HIGHLIGHT.Position = UDim2.new(0.64200002, 0, 0.226999998, 0)
+ESP_LOOT_HIGHLIGHT.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_HIGHLIGHT_TEXT.Name = "ESP_HIGHLIGHT_TEXT"
+ESP_HIGHLIGHT_TEXT.Parent = ESP_LOOT_HIGHLIGHT
+ESP_HIGHLIGHT_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_HIGHLIGHT_TEXT.BackgroundTransparency = 1.000
+ESP_HIGHLIGHT_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_HIGHLIGHT_TEXT.BorderSizePixel = 0
+ESP_HIGHLIGHT_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_HIGHLIGHT_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_HIGHLIGHT_TEXT.Font = Enum.Font.Code
+ESP_HIGHLIGHT_TEXT.Text = "Enable Highlight"
+ESP_HIGHLIGHT_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_HIGHLIGHT_TEXT.TextSize = 14.000
+ESP_HIGHLIGHT_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_HIGHLIGHT_TOGGLE.Name = "ESP_HIGHLIGHT_TOGGLE"
+ESP_HIGHLIGHT_TOGGLE.Parent = ESP_LOOT_HIGHLIGHT
+ESP_HIGHLIGHT_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_HIGHLIGHT_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_HIGHLIGHT_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_HIGHLIGHT_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ESP_LOOT_VALUE_SLIDER.Name = "ESP_LOOT_VALUE_SLIDER"
+ESP_LOOT_VALUE_SLIDER.Parent = ESP_Frame
+ESP_LOOT_VALUE_SLIDER.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ESP_LOOT_VALUE_SLIDER.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_LOOT_VALUE_SLIDER.Position = UDim2.new(0.639999986, 0, 0.561999977, 0)
+ESP_LOOT_VALUE_SLIDER.Size = UDim2.new(0.351999998, 0, 0.0350000001, 0)
+
+Slider.Name = "Slider"
+Slider.Parent = ESP_LOOT_VALUE_SLIDER
+Slider.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
+Slider.BorderColor3 = Color3.fromRGB(47, 47, 47)
+Slider.BorderSizePixel = 0
+Slider.Size = UDim2.new(0.400000006, 0, 1, 0)
+
+NumberLabel.Name = "NumberLabel"
+NumberLabel.Parent = ESP_LOOT_VALUE_SLIDER
+NumberLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel.BackgroundTransparency = 1.000
+NumberLabel.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NumberLabel.BorderSizePixel = 0
+NumberLabel.Position = UDim2.new(0, 0, -0.0333700627, 0)
+NumberLabel.Size = UDim2.new(1, 0, 1.01215339, 0)
+NumberLabel.Font = Enum.Font.Code
+NumberLabel.Text = "$2,500"
+NumberLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel.TextSize = 13.000
+NumberLabel.TextWrapped = true
+
+ESP_NPC_DISTANCE_SLIDER.Name = "ESP_NPC_DISTANCE_SLIDER"
+ESP_NPC_DISTANCE_SLIDER.Parent = ESP_Frame
+ESP_NPC_DISTANCE_SLIDER.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ESP_NPC_DISTANCE_SLIDER.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_NPC_DISTANCE_SLIDER.Position = UDim2.new(0.0390000008, 0, 0.170000002, 0)
+ESP_NPC_DISTANCE_SLIDER.Size = UDim2.new(0.351999998, 0, 0.0399999991, 0)
+
+Slider_2.Name = "Slider"
+Slider_2.Parent = ESP_NPC_DISTANCE_SLIDER
+Slider_2.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
+Slider_2.BorderColor3 = Color3.fromRGB(47, 47, 47)
+Slider_2.BorderSizePixel = 0
+Slider_2.Size = UDim2.new(0.400000006, 0, 1, 0)
+
+NumberLabel_2.Name = "NumberLabel"
+NumberLabel_2.Parent = ESP_NPC_DISTANCE_SLIDER
+NumberLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_2.BackgroundTransparency = 1.000
+NumberLabel_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NumberLabel_2.BorderSizePixel = 0
+NumberLabel_2.Position = UDim2.new(0, 0, -0.0333700627, 0)
+NumberLabel_2.Size = UDim2.new(1, 0, 1.01215339, 0)
+NumberLabel_2.Font = Enum.Font.Code
+NumberLabel_2.Text = "200m"
+NumberLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_2.TextSize = 13.000
+NumberLabel_2.TextWrapped = true
+
+ESP_POLICE.Name = "ESP_POLICE"
+ESP_POLICE.Parent = ESP_Frame
+ESP_POLICE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_POLICE.BackgroundTransparency = 1.000
+ESP_POLICE.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_POLICE.BorderSizePixel = 0
+ESP_POLICE.Position = UDim2.new(0.0399999991, 0, 0.226999998, 0)
+ESP_POLICE.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_POLICE_TEXT.Name = "ESP_POLICE_TEXT"
+ESP_POLICE_TEXT.Parent = ESP_POLICE
+ESP_POLICE_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_POLICE_TEXT.BackgroundTransparency = 1.000
+ESP_POLICE_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_POLICE_TEXT.BorderSizePixel = 0
+ESP_POLICE_TEXT.Position = UDim2.new(0.310344815, 0, -0.00599986129, 0)
+ESP_POLICE_TEXT.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
+ESP_POLICE_TEXT.Font = Enum.Font.Code
+ESP_POLICE_TEXT.Text = "Enable Police"
+ESP_POLICE_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_POLICE_TEXT.TextSize = 14.000
+ESP_POLICE_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_POLICE_TOGGLE.Name = "ESP_POLICE_TOGGLE"
+ESP_POLICE_TOGGLE.Parent = ESP_POLICE
+ESP_POLICE_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_POLICE_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_POLICE_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_POLICE_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ESP_LOOT_NAME.Name = "ESP_LOOT_NAME"
+ESP_LOOT_NAME.Parent = ESP_Frame
+ESP_LOOT_NAME.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_LOOT_NAME.BackgroundTransparency = 1.000
+ESP_LOOT_NAME.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_LOOT_NAME.BorderSizePixel = 0
+ESP_LOOT_NAME.Position = UDim2.new(0.64200002, 0, 0.331999987, 0)
+ESP_LOOT_NAME.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_NAME_TEXT.Name = "ESP_NAME_TEXT"
+ESP_NAME_TEXT.Parent = ESP_LOOT_NAME
+ESP_NAME_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_NAME_TEXT.BackgroundTransparency = 1.000
+ESP_NAME_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_NAME_TEXT.BorderSizePixel = 0
+ESP_NAME_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_NAME_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_NAME_TEXT.Font = Enum.Font.Code
+ESP_NAME_TEXT.Text = "Enable Name"
+ESP_NAME_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_NAME_TEXT.TextSize = 14.000
+ESP_NAME_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_NAME_TOGGLE.Name = "ESP_NAME_TOGGLE"
+ESP_NAME_TOGGLE.Parent = ESP_LOOT_NAME
+ESP_NAME_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_NAME_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_NAME_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_NAME_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
 ESP_VALUE.Name = "ESP_VALUE"
 ESP_VALUE.Parent = ESP_Frame
 ESP_VALUE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ESP_VALUE.BackgroundTransparency = 1.000
 ESP_VALUE.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ESP_VALUE.BorderSizePixel = 0
-ESP_VALUE.Position = UDim2.new(0.64200002, 0, 0.149000004, 0)
+ESP_VALUE.Position = UDim2.new(0.64200002, 0, 0.437000006, 0)
 ESP_VALUE.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
 
 ESP_VALUE_TEXT.Name = "ESP_VALUE_TEXT"
@@ -236,6 +412,124 @@ ESP_VALUE_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 ESP_VALUE_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
 ESP_VALUE_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
 ESP_VALUE_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ESP_LOOT_DISTANCE_SLIDER.Name = "ESP_LOOT_DISTANCE_SLIDER"
+ESP_LOOT_DISTANCE_SLIDER.Parent = ESP_Frame
+ESP_LOOT_DISTANCE_SLIDER.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+ESP_LOOT_DISTANCE_SLIDER.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_LOOT_DISTANCE_SLIDER.Position = UDim2.new(0.639999986, 0, 0.170000002, 0)
+ESP_LOOT_DISTANCE_SLIDER.Size = UDim2.new(0.351999998, 0, 0.0350000001, 0)
+
+Slider_3.Name = "Slider"
+Slider_3.Parent = ESP_LOOT_DISTANCE_SLIDER
+Slider_3.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
+Slider_3.BorderColor3 = Color3.fromRGB(47, 47, 47)
+Slider_3.BorderSizePixel = 0
+Slider_3.Size = UDim2.new(0.400000006, 0, 1, 0)
+
+NumberLabel_3.Name = "NumberLabel"
+NumberLabel_3.Parent = ESP_LOOT_DISTANCE_SLIDER
+NumberLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_3.BackgroundTransparency = 1.000
+NumberLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NumberLabel_3.BorderSizePixel = 0
+NumberLabel_3.Position = UDim2.new(0, 0, -0.0333700627, 0)
+NumberLabel_3.Size = UDim2.new(1, 0, 1.01215339, 0)
+NumberLabel_3.Font = Enum.Font.Code
+NumberLabel_3.Text = "200m"
+NumberLabel_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_3.TextSize = 13.000
+NumberLabel_3.TextWrapped = true
+
+ESP_CONTAINER.Name = "ESP_CONTAINER"
+ESP_CONTAINER.Parent = ESP_Frame
+ESP_CONTAINER.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CONTAINER.BackgroundTransparency = 1.000
+ESP_CONTAINER.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_CONTAINER.BorderSizePixel = 0
+ESP_CONTAINER.Position = UDim2.new(0.64200002, 0, 0.619000018, 0)
+ESP_CONTAINER.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_CONTAINER_TEXT.Name = "ESP_CONTAINER_TEXT"
+ESP_CONTAINER_TEXT.Parent = ESP_CONTAINER
+ESP_CONTAINER_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CONTAINER_TEXT.BackgroundTransparency = 1.000
+ESP_CONTAINER_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_CONTAINER_TEXT.BorderSizePixel = 0
+ESP_CONTAINER_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_CONTAINER_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_CONTAINER_TEXT.Font = Enum.Font.Code
+ESP_CONTAINER_TEXT.Text = "Enable Container"
+ESP_CONTAINER_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CONTAINER_TEXT.TextSize = 14.000
+ESP_CONTAINER_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_CONTAINER_TOGGLE.Name = "ESP_CONTAINER_TOGGLE"
+ESP_CONTAINER_TOGGLE.Parent = ESP_CONTAINER
+ESP_CONTAINER_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_CONTAINER_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_CONTAINER_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_CONTAINER_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ESP_KEYCARD.Name = "ESP_KEYCARD"
+ESP_KEYCARD.Parent = ESP_Frame
+ESP_KEYCARD.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_KEYCARD.BackgroundTransparency = 1.000
+ESP_KEYCARD.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_KEYCARD.BorderSizePixel = 0
+ESP_KEYCARD.Position = UDim2.new(0.64200002, 0, 0.723999977, 0)
+ESP_KEYCARD.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_KEYCARD_TEXT.Name = "ESP_KEYCARD_TEXT"
+ESP_KEYCARD_TEXT.Parent = ESP_KEYCARD
+ESP_KEYCARD_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_KEYCARD_TEXT.BackgroundTransparency = 1.000
+ESP_KEYCARD_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_KEYCARD_TEXT.BorderSizePixel = 0
+ESP_KEYCARD_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ESP_KEYCARD_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ESP_KEYCARD_TEXT.Font = Enum.Font.Code
+ESP_KEYCARD_TEXT.Text = "Enable Keycard"
+ESP_KEYCARD_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_KEYCARD_TEXT.TextSize = 14.000
+ESP_KEYCARD_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_KEYCARD_TOGGLE.Name = "ESP_KEYCARD_TOGGLE"
+ESP_KEYCARD_TOGGLE.Parent = ESP_KEYCARD
+ESP_KEYCARD_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_KEYCARD_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_KEYCARD_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_KEYCARD_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ESP_CAMERA.Name = "ESP_CAMERA"
+ESP_CAMERA.Parent = ESP_Frame
+ESP_CAMERA.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CAMERA.BackgroundTransparency = 1.000
+ESP_CAMERA.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_CAMERA.BorderSizePixel = 0
+ESP_CAMERA.Position = UDim2.new(0.0399999991, 0, 0.437000006, 0)
+ESP_CAMERA.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ESP_CAMERA_TEXT.Name = "ESP_CAMERA_TEXT"
+ESP_CAMERA_TEXT.Parent = ESP_CAMERA
+ESP_CAMERA_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CAMERA_TEXT.BackgroundTransparency = 1.000
+ESP_CAMERA_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ESP_CAMERA_TEXT.BorderSizePixel = 0
+ESP_CAMERA_TEXT.Position = UDim2.new(0.310344815, 0, -0.0749653801, 0)
+ESP_CAMERA_TEXT.Size = UDim2.new(0.908457458, 0, 1.00000012, 0)
+ESP_CAMERA_TEXT.Font = Enum.Font.Code
+ESP_CAMERA_TEXT.Text = "Enable Camera"
+ESP_CAMERA_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ESP_CAMERA_TEXT.TextSize = 14.000
+ESP_CAMERA_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ESP_CAMERA_TOGGLE.Name = "ESP_CAMERA_TOGGLE"
+ESP_CAMERA_TOGGLE.Parent = ESP_CAMERA
+ESP_CAMERA_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ESP_CAMERA_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ESP_CAMERA_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ESP_CAMERA_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
 
 Selection_Frame.Name = "Selection_Frame"
 Selection_Frame.Parent = Main_2
@@ -344,7 +638,7 @@ BAGTP_KEYBIND.Name = "BAGTP_KEYBIND"
 BAGTP_KEYBIND.Parent = BAGTP_BUTTON
 BAGTP_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 BAGTP_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
-BAGTP_KEYBIND.Position = UDim2.new(1.31034625, 0, 0.0974484161, 0)
+BAGTP_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
 BAGTP_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
 BAGTP_KEYBIND.Font = Enum.Font.Code
 BAGTP_KEYBIND.Text = "[X]"
@@ -387,7 +681,7 @@ AUTOSAW_KEYBIND.Name = "AUTOSAW_KEYBIND"
 AUTOSAW_KEYBIND.Parent = AUTOSAW_BUTTON
 AUTOSAW_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 AUTOSAW_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
-AUTOSAW_KEYBIND.Position = UDim2.new(1.31034625, 0, 0.0974484161, 0)
+AUTOSAW_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
 AUTOSAW_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
 AUTOSAW_KEYBIND.Font = Enum.Font.Code
 AUTOSAW_KEYBIND.Text = "[Z]"
@@ -430,7 +724,7 @@ GRABNEAR_KEYBIND.Name = "GRABNEAR_KEYBIND"
 GRABNEAR_KEYBIND.Parent = GRABNEAR_BUTTON
 GRABNEAR_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
 GRABNEAR_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
-GRABNEAR_KEYBIND.Position = UDim2.new(1.31034625, 0, 0.0974484161, 0)
+GRABNEAR_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
 GRABNEAR_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
 GRABNEAR_KEYBIND.Font = Enum.Font.Code
 GRABNEAR_KEYBIND.Text = "[H]"
@@ -438,6 +732,178 @@ GRABNEAR_KEYBIND.TextColor3 = Color3.fromRGB(255, 255, 255)
 GRABNEAR_KEYBIND.TextScaled = true
 GRABNEAR_KEYBIND.TextSize = 14.000
 GRABNEAR_KEYBIND.TextWrapped = true
+
+TELEPORTGUARDS_BUTTON.Name = "TELEPORTGUARDS_BUTTON"
+TELEPORTGUARDS_BUTTON.Parent = MISC_Frame
+TELEPORTGUARDS_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTGUARDS_BUTTON.BackgroundTransparency = 1.000
+TELEPORTGUARDS_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TELEPORTGUARDS_BUTTON.BorderSizePixel = 0
+TELEPORTGUARDS_BUTTON.Position = UDim2.new(0.0399999991, 0, 0.35800001, 0)
+TELEPORTGUARDS_BUTTON.Size = UDim2.new(0.203999996, 0, 0.108000003, 0)
+
+TELEPORTGUARDS_TEXT.Name = "TELEPORTGUARDS_TEXT"
+TELEPORTGUARDS_TEXT.Parent = TELEPORTGUARDS_BUTTON
+TELEPORTGUARDS_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTGUARDS_TEXT.BackgroundTransparency = 1.000
+TELEPORTGUARDS_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TELEPORTGUARDS_TEXT.BorderSizePixel = 0
+TELEPORTGUARDS_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+TELEPORTGUARDS_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+TELEPORTGUARDS_TEXT.Font = Enum.Font.Code
+TELEPORTGUARDS_TEXT.Text = "Kill Police"
+TELEPORTGUARDS_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTGUARDS_TEXT.TextSize = 14.000
+TELEPORTGUARDS_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+TELEPORTGUARDS_TOGGLE.Name = "TELEPORTGUARDS_TOGGLE"
+TELEPORTGUARDS_TOGGLE.Parent = TELEPORTGUARDS_BUTTON
+TELEPORTGUARDS_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+TELEPORTGUARDS_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+TELEPORTGUARDS_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+TELEPORTGUARDS_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+TELEPORTGUARDS_KEYBIND.Name = "TELEPORTGUARDS_KEYBIND"
+TELEPORTGUARDS_KEYBIND.Parent = TELEPORTGUARDS_BUTTON
+TELEPORTGUARDS_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+TELEPORTGUARDS_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
+TELEPORTGUARDS_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
+TELEPORTGUARDS_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
+TELEPORTGUARDS_KEYBIND.Font = Enum.Font.Code
+TELEPORTGUARDS_KEYBIND.Text = "[Y]"
+TELEPORTGUARDS_KEYBIND.TextColor3 = Color3.fromRGB(255, 255, 255)
+TELEPORTGUARDS_KEYBIND.TextScaled = true
+TELEPORTGUARDS_KEYBIND.TextSize = 14.000
+TELEPORTGUARDS_KEYBIND.TextWrapped = true
+
+KEYCARDTP_BUTTON.Name = "KEYCARDTP_BUTTON"
+KEYCARDTP_BUTTON.Parent = MISC_Frame
+KEYCARDTP_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDTP_BUTTON.BackgroundTransparency = 1.000
+KEYCARDTP_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KEYCARDTP_BUTTON.BorderSizePixel = 0
+KEYCARDTP_BUTTON.Position = UDim2.new(0.0399999991, 0, 0.463, 0)
+KEYCARDTP_BUTTON.Size = UDim2.new(0.203999996, 0, 0.108000003, 0)
+
+KEYCARDTP_TEXT.Name = "KEYCARDTP_TEXT"
+KEYCARDTP_TEXT.Parent = KEYCARDTP_BUTTON
+KEYCARDTP_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDTP_TEXT.BackgroundTransparency = 1.000
+KEYCARDTP_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KEYCARDTP_TEXT.BorderSizePixel = 0
+KEYCARDTP_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+KEYCARDTP_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+KEYCARDTP_TEXT.Font = Enum.Font.Code
+KEYCARDTP_TEXT.Text = "Keycard TP"
+KEYCARDTP_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDTP_TEXT.TextSize = 14.000
+KEYCARDTP_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+KEYCARDTP_TOGGLE.Name = "KEYCARDTP_TOGGLE"
+KEYCARDTP_TOGGLE.Parent = KEYCARDTP_BUTTON
+KEYCARDTP_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+KEYCARDTP_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+KEYCARDTP_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+KEYCARDTP_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+KEYCARDTP_KEYBIND.Name = "KEYCARDTP_KEYBIND"
+KEYCARDTP_KEYBIND.Parent = KEYCARDTP_BUTTON
+KEYCARDTP_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+KEYCARDTP_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
+KEYCARDTP_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
+KEYCARDTP_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
+KEYCARDTP_KEYBIND.Font = Enum.Font.Code
+KEYCARDTP_KEYBIND.Text = "[L]"
+KEYCARDTP_KEYBIND.TextColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDTP_KEYBIND.TextScaled = true
+KEYCARDTP_KEYBIND.TextSize = 14.000
+KEYCARDTP_KEYBIND.TextWrapped = true
+
+AUTOSECURE_BUTTON.Name = "AUTOSECURE_BUTTON"
+AUTOSECURE_BUTTON.Parent = MISC_Frame
+AUTOSECURE_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AUTOSECURE_BUTTON.BackgroundTransparency = 1.000
+AUTOSECURE_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AUTOSECURE_BUTTON.BorderSizePixel = 0
+AUTOSECURE_BUTTON.Position = UDim2.new(0.0399999991, 0, 0.568000019, 0)
+AUTOSECURE_BUTTON.Size = UDim2.new(0.203999996, 0, 0.108000003, 0)
+
+AUTOSECURE_TEXT.Name = "AUTOSECURE_TEXT"
+AUTOSECURE_TEXT.Parent = AUTOSECURE_BUTTON
+AUTOSECURE_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+AUTOSECURE_TEXT.BackgroundTransparency = 1.000
+AUTOSECURE_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+AUTOSECURE_TEXT.BorderSizePixel = 0
+AUTOSECURE_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+AUTOSECURE_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+AUTOSECURE_TEXT.Font = Enum.Font.Code
+AUTOSECURE_TEXT.Text = "Auto Secure"
+AUTOSECURE_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+AUTOSECURE_TEXT.TextSize = 14.000
+AUTOSECURE_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+AUTOSECURE_TOGGLE.Name = "AUTOSECURE_TOGGLE"
+AUTOSECURE_TOGGLE.Parent = AUTOSECURE_BUTTON
+AUTOSECURE_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+AUTOSECURE_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+AUTOSECURE_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+AUTOSECURE_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+AUTOSECURE_KEYBIND.Name = "AUTOSECURE_KEYBIND"
+AUTOSECURE_KEYBIND.Parent = AUTOSECURE_BUTTON
+AUTOSECURE_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+AUTOSECURE_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
+AUTOSECURE_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
+AUTOSECURE_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
+AUTOSECURE_KEYBIND.Font = Enum.Font.Code
+AUTOSECURE_KEYBIND.Text = "[J]"
+AUTOSECURE_KEYBIND.TextColor3 = Color3.fromRGB(255, 255, 255)
+AUTOSECURE_KEYBIND.TextScaled = true
+AUTOSECURE_KEYBIND.TextSize = 14.000
+AUTOSECURE_KEYBIND.TextWrapped = true
+
+KEYCARDGUARDTP_BUTTON.Name = "KEYCARDGUARDTP_BUTTON"
+KEYCARDGUARDTP_BUTTON.Parent = MISC_Frame
+KEYCARDGUARDTP_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDGUARDTP_BUTTON.BackgroundTransparency = 1.000
+KEYCARDGUARDTP_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KEYCARDGUARDTP_BUTTON.BorderSizePixel = 0
+KEYCARDGUARDTP_BUTTON.Position = UDim2.new(0.0399999991, 0, 0.672999978, 0)
+KEYCARDGUARDTP_BUTTON.Size = UDim2.new(0.203999996, 0, 0.108000003, 0)
+
+KEYCARDGUARDTP_TEXT.Name = "KEYCARDGUARDTP_TEXT"
+KEYCARDGUARDTP_TEXT.Parent = KEYCARDGUARDTP_BUTTON
+KEYCARDGUARDTP_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDGUARDTP_TEXT.BackgroundTransparency = 1.000
+KEYCARDGUARDTP_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+KEYCARDGUARDTP_TEXT.BorderSizePixel = 0
+KEYCARDGUARDTP_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+KEYCARDGUARDTP_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+KEYCARDGUARDTP_TEXT.Font = Enum.Font.Code
+KEYCARDGUARDTP_TEXT.Text = "Guard Keycard TP"
+KEYCARDGUARDTP_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDGUARDTP_TEXT.TextSize = 14.000
+KEYCARDGUARDTP_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+KEYCARDGUARDTP_TOGGLE.Name = "KEYCARDGUARDTP_TOGGLE"
+KEYCARDGUARDTP_TOGGLE.Parent = KEYCARDGUARDTP_BUTTON
+KEYCARDGUARDTP_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+KEYCARDGUARDTP_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+KEYCARDGUARDTP_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+KEYCARDGUARDTP_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+KEYCARDGUARDTP_KEYBIND.Name = "KEYCARDGUARDTP_KEYBIND"
+KEYCARDGUARDTP_KEYBIND.Parent = KEYCARDGUARDTP_BUTTON
+KEYCARDGUARDTP_KEYBIND.BackgroundColor3 = Color3.fromRGB(16, 16, 16)
+KEYCARDGUARDTP_KEYBIND.BorderColor3 = Color3.fromRGB(47, 47, 47)
+KEYCARDGUARDTP_KEYBIND.Position = UDim2.new(1.67999995, 0, 0.0970000029, 0)
+KEYCARDGUARDTP_KEYBIND.Size = UDim2.new(0.255696505, 0, 0.764619648, 0)
+KEYCARDGUARDTP_KEYBIND.Font = Enum.Font.Code
+KEYCARDGUARDTP_KEYBIND.Text = "[U]"
+KEYCARDGUARDTP_KEYBIND.TextColor3 = Color3.fromRGB(255, 255, 255)
+KEYCARDGUARDTP_KEYBIND.TextScaled = true
+KEYCARDGUARDTP_KEYBIND.TextSize = 14.000
+KEYCARDGUARDTP_KEYBIND.TextWrapped = true
 
 CHARACTER_Frame.Name = "CHARACTER_Frame"
 CHARACTER_Frame.Parent = Main_2
@@ -476,6 +942,184 @@ INFAMMO_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
 INFAMMO_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
 INFAMMO_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
 INFAMMO_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+NOBAGSLOW_BUTTON.Name = "NOBAGSLOW_BUTTON"
+NOBAGSLOW_BUTTON.Parent = CHARACTER_Frame
+NOBAGSLOW_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NOBAGSLOW_BUTTON.BackgroundTransparency = 1.000
+NOBAGSLOW_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NOBAGSLOW_BUTTON.BorderSizePixel = 0
+NOBAGSLOW_BUTTON.Position = UDim2.new(0.64200002, 0, 0.0450000018, 0)
+NOBAGSLOW_BUTTON.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+NOBAGSLOW_TEXT.Name = "NOBAGSLOW_TEXT"
+NOBAGSLOW_TEXT.Parent = NOBAGSLOW_BUTTON
+NOBAGSLOW_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NOBAGSLOW_TEXT.BackgroundTransparency = 1.000
+NOBAGSLOW_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NOBAGSLOW_TEXT.BorderSizePixel = 0
+NOBAGSLOW_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+NOBAGSLOW_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+NOBAGSLOW_TEXT.Font = Enum.Font.Code
+NOBAGSLOW_TEXT.Text = "No Bag Slow"
+NOBAGSLOW_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+NOBAGSLOW_TEXT.TextSize = 14.000
+NOBAGSLOW_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+NOBAGSLOW_TOGGLE.Name = "NOBAGSLOW_TOGGLE"
+NOBAGSLOW_TOGGLE.Parent = NOBAGSLOW_BUTTON
+NOBAGSLOW_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+NOBAGSLOW_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+NOBAGSLOW_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+NOBAGSLOW_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+ALWAYSHEADSHOT_BUTTON.Name = "ALWAYSHEADSHOT_BUTTON"
+ALWAYSHEADSHOT_BUTTON.Parent = CHARACTER_Frame
+ALWAYSHEADSHOT_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ALWAYSHEADSHOT_BUTTON.BackgroundTransparency = 1.000
+ALWAYSHEADSHOT_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ALWAYSHEADSHOT_BUTTON.BorderSizePixel = 0
+ALWAYSHEADSHOT_BUTTON.Position = UDim2.new(0.0399999991, 0, 0.150000006, 0)
+ALWAYSHEADSHOT_BUTTON.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+ALWAYSHEADSHOT_TEXT.Name = "ALWAYSHEADSHOT_TEXT"
+ALWAYSHEADSHOT_TEXT.Parent = ALWAYSHEADSHOT_BUTTON
+ALWAYSHEADSHOT_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ALWAYSHEADSHOT_TEXT.BackgroundTransparency = 1.000
+ALWAYSHEADSHOT_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+ALWAYSHEADSHOT_TEXT.BorderSizePixel = 0
+ALWAYSHEADSHOT_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+ALWAYSHEADSHOT_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+ALWAYSHEADSHOT_TEXT.Font = Enum.Font.Code
+ALWAYSHEADSHOT_TEXT.Text = "Always Headshot"
+ALWAYSHEADSHOT_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+ALWAYSHEADSHOT_TEXT.TextSize = 14.000
+ALWAYSHEADSHOT_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+ALWAYSHEADSHOT_TOGGLE.Name = "ALWAYSHEADSHOT_TOGGLE"
+ALWAYSHEADSHOT_TOGGLE.Parent = ALWAYSHEADSHOT_BUTTON
+ALWAYSHEADSHOT_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+ALWAYSHEADSHOT_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+ALWAYSHEADSHOT_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+ALWAYSHEADSHOT_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+INFINITEJUMP_BUTTON.Name = "INFINITEJUMP_BUTTON"
+INFINITEJUMP_BUTTON.Parent = CHARACTER_Frame
+INFINITEJUMP_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+INFINITEJUMP_BUTTON.BackgroundTransparency = 1.000
+INFINITEJUMP_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+INFINITEJUMP_BUTTON.BorderSizePixel = 0
+INFINITEJUMP_BUTTON.Position = UDim2.new(0.64200002, 0, 0.254999995, 0)
+INFINITEJUMP_BUTTON.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+INFINITEJUMP_TEXT.Name = "INFINITEJUMP_TEXT"
+INFINITEJUMP_TEXT.Parent = INFINITEJUMP_BUTTON
+INFINITEJUMP_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+INFINITEJUMP_TEXT.BackgroundTransparency = 1.000
+INFINITEJUMP_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+INFINITEJUMP_TEXT.BorderSizePixel = 0
+INFINITEJUMP_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+INFINITEJUMP_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+INFINITEJUMP_TEXT.Font = Enum.Font.Code
+INFINITEJUMP_TEXT.Text = "Infinite Jump"
+INFINITEJUMP_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+INFINITEJUMP_TEXT.TextSize = 14.000
+INFINITEJUMP_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+INFINITEJUMP_TOGGLE.Name = "INFINITEJUMP_TOGGLE"
+INFINITEJUMP_TOGGLE.Parent = INFINITEJUMP_BUTTON
+INFINITEJUMP_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+INFINITEJUMP_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+INFINITEJUMP_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+INFINITEJUMP_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+NOCLIP_BUTTON.Name = "NOCLIP_BUTTON"
+NOCLIP_BUTTON.Parent = CHARACTER_Frame
+NOCLIP_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NOCLIP_BUTTON.BackgroundTransparency = 1.000
+NOCLIP_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NOCLIP_BUTTON.BorderSizePixel = 0
+NOCLIP_BUTTON.Position = UDim2.new(0.64200002, 0, 0.150000006, 0)
+NOCLIP_BUTTON.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+NOCLIP_TEXT.Name = "NOCLIP_TEXT"
+NOCLIP_TEXT.Parent = NOCLIP_BUTTON
+NOCLIP_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NOCLIP_TEXT.BackgroundTransparency = 1.000
+NOCLIP_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NOCLIP_TEXT.BorderSizePixel = 0
+NOCLIP_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+NOCLIP_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+NOCLIP_TEXT.Font = Enum.Font.Code
+NOCLIP_TEXT.Text = "Noclip"
+NOCLIP_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+NOCLIP_TEXT.TextSize = 14.000
+NOCLIP_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+NOCLIP_TOGGLE.Name = "NOCLIP_TOGGLE"
+NOCLIP_TOGGLE.Parent = NOCLIP_BUTTON
+NOCLIP_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+NOCLIP_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+NOCLIP_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+NOCLIP_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+WALKSPEED_BUTTON.Name = "WALKSPEED_BUTTON"
+WALKSPEED_BUTTON.Parent = CHARACTER_Frame
+WALKSPEED_BUTTON.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WALKSPEED_BUTTON.BackgroundTransparency = 1.000
+WALKSPEED_BUTTON.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WALKSPEED_BUTTON.BorderSizePixel = 0
+WALKSPEED_BUTTON.Position = UDim2.new(0.64200002, 0, 0.360000014, 0)
+WALKSPEED_BUTTON.Size = UDim2.new(0.203747079, 0, 0.108208954, 0)
+
+WALKSPEED_TEXT.Name = "WALKSPEED_TEXT"
+WALKSPEED_TEXT.Parent = WALKSPEED_BUTTON
+WALKSPEED_TEXT.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+WALKSPEED_TEXT.BackgroundTransparency = 1.000
+WALKSPEED_TEXT.BorderColor3 = Color3.fromRGB(0, 0, 0)
+WALKSPEED_TEXT.BorderSizePixel = 0
+WALKSPEED_TEXT.Position = UDim2.new(0.321840495, 0, -0.00599986129, 0)
+WALKSPEED_TEXT.Size = UDim2.new(0.908456743, 0, 1.00000012, 0)
+WALKSPEED_TEXT.Font = Enum.Font.Code
+WALKSPEED_TEXT.Text = "Change Walkspeed"
+WALKSPEED_TEXT.TextColor3 = Color3.fromRGB(255, 255, 255)
+WALKSPEED_TEXT.TextSize = 14.000
+WALKSPEED_TEXT.TextXAlignment = Enum.TextXAlignment.Left
+
+WALKSPEED_TOGGLE.Name = "WALKSPEED_TOGGLE"
+WALKSPEED_TOGGLE.Parent = WALKSPEED_BUTTON
+WALKSPEED_TOGGLE.BackgroundColor3 = Color3.fromRGB(18, 18, 18)
+WALKSPEED_TOGGLE.BorderColor3 = Color3.fromRGB(47, 47, 47)
+WALKSPEED_TOGGLE.Position = UDim2.new(0, 0, 0.241379306, 0)
+WALKSPEED_TOGGLE.Size = UDim2.new(0.172413796, 0, 0.517241359, 0)
+
+WALKSPEED_VALUE_SLIDER.Name = "WALKSPEED_VALUE_SLIDER"
+WALKSPEED_VALUE_SLIDER.Parent = CHARACTER_Frame
+WALKSPEED_VALUE_SLIDER.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+WALKSPEED_VALUE_SLIDER.BorderColor3 = Color3.fromRGB(47, 47, 47)
+WALKSPEED_VALUE_SLIDER.Position = UDim2.new(0.639999986, 0, 0.485000014, 0)
+WALKSPEED_VALUE_SLIDER.Size = UDim2.new(0.351999998, 0, 0.0350000001, 0)
+
+Slider_4.Name = "Slider"
+Slider_4.Parent = WALKSPEED_VALUE_SLIDER
+Slider_4.BackgroundColor3 = Color3.fromRGB(5, 105, 172)
+Slider_4.BorderColor3 = Color3.fromRGB(47, 47, 47)
+Slider_4.BorderSizePixel = 0
+Slider_4.Size = UDim2.new(0.5, 0, 1, 0)
+
+NumberLabel_4.Name = "NumberLabel"
+NumberLabel_4.Parent = WALKSPEED_VALUE_SLIDER
+NumberLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_4.BackgroundTransparency = 1.000
+NumberLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+NumberLabel_4.BorderSizePixel = 0
+NumberLabel_4.Position = UDim2.new(0, 0, -0.0333700627, 0)
+NumberLabel_4.Size = UDim2.new(1, 0, 1.01215339, 0)
+NumberLabel_4.Font = Enum.Font.Code
+NumberLabel_4.Text = "25"
+NumberLabel_4.TextColor3 = Color3.fromRGB(255, 255, 255)
+NumberLabel_4.TextSize = 13.000
+NumberLabel_4.TextWrapped = true
 
 AIM_Frame.Name = "AIM_Frame"
 AIM_Frame.Parent = Main_2
@@ -531,7 +1175,13 @@ getgenv().CHARACTER.InfiniteAmmoFunction  = function() end
 
 getgenv().MISC = {}
 getgenv().MISC.BAGTP = false
+getgenv().MISC.GRABNEAR = false
 
+getgenv().Sliders = {}
+getgenv().Sliders.LootValue = 2500
+getgenv().Sliders.LootDistance = 200
+getgenv().Sliders.NPCDistance = 200
+getgenv().Sliders.WalkSpeed = 25
 
 local function UpdateVisualToggle(Holder, Frame, bool)
 	local Button = Main_2[Holder][Frame]:FindFirstChildWhichIsA("Frame")
@@ -577,10 +1227,17 @@ local FunctionTable = {
 		getgenv().MISC.BAGTP = not getgenv().MISC.BAGTP
 		UpdateVisualToggle("MISC_Frame", "BAGTP_BUTTON", getgenv().MISC.BAGTP)
 	end,
+	["GRABNEAR_BUTTON"] = function() 
+		getgenv().MISC.GRABNEAR = not getgenv().MISC.GRABNEAR
+		UpdateVisualToggle("MISC_Frame", "GRABNEAR_BUTTON", getgenv().MISC.GRABNEAR)
+	end,
 }
 
 local KeybindFunctions = {
 	["BAGTP_KEYBIND"] = function(key)
+		getgenv().Keybinds["BAGTP"] = key
+	end,
+	["GRABNEAR_KEYBIND"] = function(key)
 		getgenv().Keybinds["BAGTP"] = key
 	end,
 }
@@ -663,3 +1320,78 @@ for _, Frame : TextLabel in pairs(Selection_Frame:GetChildren()) do
 		end
 	end)
 end
+
+local function formatNumber(num)
+	local str = tostring(math.floor(num))
+	return str:reverse():gsub("(%d%d%d)", "%1,"):reverse():gsub("^,", "")
+end
+
+local function UpdateSlider(Frame, MaxValue, Text)
+	local sliderPosX = Frame.AbsolutePosition.X
+	local sliderSizeX = Frame.AbsoluteSize.X
+
+	local percent = math.clamp((Mouse.X - sliderPosX) / sliderSizeX, 0, 1)
+	local roundedValue = math.round(percent * MaxValue)
+	
+	if Text == "$" then
+		Frame.NumberLabel.Text =  Text .. formatNumber(roundedValue)
+	else
+		Frame.NumberLabel.Text = tostring(roundedValue) .. Text
+	end
+	
+	Frame.Slider.Size = UDim2.new(percent, 0, 1, 0)
+	
+	return roundedValue
+end
+
+local SliderUpdates = {
+	-- // ESP SLIDERS
+	["ESP_LOOT_DISTANCE_SLIDER"] = function ()
+		getgenv().Sliders.LootDistance = UpdateSlider(ESP_LOOT_DISTANCE_SLIDER, 1000, "m")
+	end,
+	["WALKSPEED_VALUE_SLIDER"] = function ()
+		getgenv().Sliders.WalkSpeed = UpdateSlider(WALKSPEED_VALUE_SLIDER, 60, "")
+	end,
+	["ESP_LOOT_VALUE_SLIDER"] = function ()
+		getgenv().Sliders.LootValue = UpdateSlider(ESP_LOOT_VALUE_SLIDER, 500000, "$")
+	end,
+	["ESP_NPC_DISTANCE_SLIDER"] = function ()
+		getgenv().Sliders.NPCDistance = UpdateSlider(ESP_NPC_DISTANCE_SLIDER, 1000, "m")
+	end
+}
+
+local function IsMouseInside(Frame)
+	local pos = Frame.AbsolutePosition
+	local size = Frame.AbsoluteSize
+	
+	return Mouse.X >= pos.X
+		and Mouse.X <= pos.X + size.X
+		and Mouse.Y >= pos.Y
+		and Mouse.Y <= pos.Y + size.Y
+end
+
+UserInputService.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		for _, Frame in pairs(Main_2:GetDescendants()) do
+			if Frame:IsA("Frame") and Frame:FindFirstChild("Slider") and Frame:FindFirstChild("NumberLabel") then
+				if IsMouseInside(Frame) then
+					SliderUpdates[Frame.Name]()
+					MOUSE_DOWN = true
+					UIIDragDetector.Enabled = false
+					while MOUSE_DOWN do
+						SliderUpdates[Frame.Name]()
+						task.wait()
+					end
+					break
+				end
+			end
+		end
+	end
+end)
+	
+UserInputService.InputEnded:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		MOUSE_DOWN = false
+		UIIDragDetector.Enabled = true
+	end
+end)
