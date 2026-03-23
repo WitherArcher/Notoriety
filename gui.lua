@@ -1,4 +1,4 @@
-print("Version 0.0.0.7")
+print("Version 0.0.0.71")
 
 local UserInputService = game:GetService("UserInputService")
 local Mouse = game.Players.LocalPlayer:GetMouse()
@@ -110,7 +110,7 @@ local AIMBOT_TOGGLE = Instance.new("Frame")
 local UIIDragDetector = Instance.new("UIDragDetector")
 
 Main.Name = "Main"
-Main.Parent = game.Players.LocalPlayer.PlayerGui
+Main.Parent = game:GetService("CoreGui")
 Main.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 Main_2.Name = "Main"
@@ -1167,6 +1167,8 @@ getgenv().ESP.Citizen = false
 getgenv().ESP.Police = false
 getgenv().ESP.Loot = false
 getgenv().ESP.Value = false
+getgenv().ESP.Highlight = false
+getgenv().ESP.Name = false
 getgenv().ESP.Update  = function() end
 
 getgenv().CHARACTER = {}
@@ -1215,6 +1217,14 @@ local FunctionTable = {
 	["ESP_VALUE"] = function() 
 		getgenv().ESP.Value = not getgenv().ESP.Value
 		UpdateVisualToggle("ESP_Frame", "ESP_VALUE", getgenv().ESP.Value)
+	end,
+	["ESP_LOOT_NAME"] = function() 
+		getgenv().ESP.Name = not getgenv().ESP.Name
+		UpdateVisualToggle("ESP_Frame", "ESP_LOOT_NAME", getgenv().ESP.Name)
+	end,
+	["ESP_LOOT_HIGHLIGHT"] = function() 
+		getgenv().ESP.Highlight = not getgenv().ESP.Highlight
+		UpdateVisualToggle("ESP_Frame", "ESP_LOOT_HIGHLIGHT", getgenv().ESP.Highlight)
 	end,
 	-- // CHARACTER
 	["INFAMMO_BUTTON"] = function() 
