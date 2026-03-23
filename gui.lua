@@ -1,4 +1,4 @@
-print("Version 0.0.0.63")
+print("Version 0.0.0.65")
 
 local UserInputService = game:GetService("UserInputService")
 
@@ -580,7 +580,7 @@ local FunctionTable = {
 
 local KeybindFunctions = {
 	["BAGTP_KEYBIND"] = function(key)
-		getgenv().Keybinds["BAGTP"] = key.KeyCode
+		getgenv().Keybinds["BAGTP"] = key
 	end,
 }
 
@@ -597,6 +597,17 @@ for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 end
 
 for _, Frame : Frame in pairs(CHARACTER_Frame:GetChildren()) do
+	Frame.InputBegan:Connect(function(input : InputObject)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			if FunctionTable[Frame.Name] then
+				local Func = FunctionTable[Frame.Name]
+				Func()
+			end
+		end
+	end)
+end
+
+for _, Frame : Frame in pairs(MISC_Frame:GetChildren()) do
 	Frame.InputBegan:Connect(function(input : InputObject)
 		if input.UserInputType == Enum.UserInputType.MouseButton1 then
 			if FunctionTable[Frame.Name] then
