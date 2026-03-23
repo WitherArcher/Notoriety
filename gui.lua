@@ -547,10 +547,12 @@ local FunctionTable = {
 	-- // ESP
 	["ESP_BUTTON"] = function() 
 		getgenv().ESP.Enabled = not getgenv().ESP.Enabled
+		print("RAN")
 		UpdateVisualToggle("ESP_Frame", "ESP_BUTTON", getgenv().ESP.Enabled)
 	end,
 	["ESP_POLICE"] = function() 
 		getgenv().ESP.Police = not getgenv().ESP.Police
+		print("AAA")
 		UpdateVisualToggle("ESP_Frame", "ESP_POLICE", getgenv().ESP.Police)
 	end,
 	["ESP_CITIZEN"] = function() 
@@ -590,6 +592,7 @@ for _, Frame : Frame in pairs(ESP_Frame:GetChildren()) do
 			if FunctionTable[Frame.Name] then
 				local Func = FunctionTable[Frame.Name]
 				Func()
+				print("Fired")
 				getgenv().ESP.Update()
 			end
 		end
